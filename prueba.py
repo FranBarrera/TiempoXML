@@ -5,6 +5,25 @@ import webbrowser
 f = open('template.html','r')
 web = open('web.html','w')
 
+def direccion(orientacion):
+	if (orientacion > 337.5 and orientacion <= 360) or (orientacion  >= 0 and orientacion < 22.5):
+		return 'N'
+	if orientacion >= 22.5 and orientacion <= 67.5:
+		return 'NE'
+	if orientacion > 67.5 and orientacion < 112.5:
+		return 'E'
+	if orientacion >= 112.5 and orientacion <= 157.5:
+		return 'SE'
+	if orientacion > 157.5 and orientacion < 202.5:
+		return 'S'
+	if orientacion >= 202.5 and orientacion <= 245.5:
+		return 'SO'
+	if orientacion > 245.5 and orientacion < 292.5:
+		return 'O'
+	if orientacion >= 292.5 and orientacion <= 337.5:
+		return 'NO'
+
+
 provincias = ['Almeria','Cadiz','Cordoba','Huelva','Jaen','Malaga','Sevilla']
 
 html=''
@@ -26,7 +45,8 @@ for provincia in provincias:
 	temp_max = raiz.find("temperature")
 	temp_max = int(float(temp_max.attrib["max"]))
 	orientacion = raiz.find("wind/direction")
-	orientacion = orientacion.attrib["name"]
+	orientacion = float(orientacion.attrib["value"])
+	orientacion = direccion(orientacion)
 	list_min.append(temp_min)
 	list_max.append(temp_max)
 	listspeed.append(speed)
