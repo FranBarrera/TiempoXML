@@ -5,7 +5,7 @@ import webbrowser
 f = open('template.html','r')
 web = open('web.html','w')
 
-provincias = ['Almeria','Cadiz','Cordoba','Huelva','Jaen','Malaga','sevilla']
+provincias = ['Almeria','Cadiz','Cordoba','Huelva','Jaen','Malaga','Sevilla']
 
 html=''
 list_min = []
@@ -15,16 +15,16 @@ listorientacion = []
 
 
 for provincia in provincias:
-	p = {'q':provincia,'mode':'xml','units':'metric','lang':'sp'}
+	p = {'q':provincia ,'mode':'xml','units':'metric','lang':'sp'}
 	r = requests.get('http://api.openweathermap.org/data/2.5/weather', params=p)
 	raiz = etree.fromstring(r.text.encode("utf-8"))
 	city = raiz.find("city")
 	speed = raiz.find("wind/speed")
 	speed = speed.attrib["value"]
 	temp_min = raiz.find("temperature")
-	temp_min = temp_min.attrib["min"]
+	temp_min = int(float(temp_min.attrib["min"]))
 	temp_max = raiz.find("temperature")
-	temp_max = temp_max.attrib["max"]
+	temp_max = int(float(temp_max.attrib["max"]))
 	orientacion = raiz.find("wind/direction")
 	orientacion = orientacion.attrib["name"]
 	list_min.append(temp_min)
