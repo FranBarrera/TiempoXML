@@ -24,7 +24,7 @@ def direccion(orientacion):
 		return 'NO'
 
 
-provincias = ['Almeria','Cadiz','Cordoba','Huelva','Jaen','Malaga','Sevilla']
+provincias = ['Almeria','Cadiz','Cordoba','Granada','Huelva','Jaen','Malaga','Sevilla']
 
 html=''
 list_min = []
